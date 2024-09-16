@@ -1,0 +1,16 @@
+body {
+  text-align: center;
+  padding: 3vw 2vw;
+}
+
+img {
+  width: 23vw;
+  height: 23vw;
+  object-fit: cover;
+  display: inline-block;
+  margin: 3vw;
+}
+
+.rotate {
+  transform: rotate(45deg);
+}
