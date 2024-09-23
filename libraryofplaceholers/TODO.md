@@ -15,18 +15,9 @@
 ## Idea placeholders
 
 - substitute pokemon
-- the bee movie script
-- moby dick
-- full lorem ipsum
-- qwertyuiop
-- how have been hacked message
-- bony bony bony
 - grammarly ad
 - just copy it from a bunch of landing pages
-- pi
 - under construction
 - this will be done very soon...
-- ...
-- your name here
 - I, ____________ consent to this form
 - look at the wikipedia page "filler text"

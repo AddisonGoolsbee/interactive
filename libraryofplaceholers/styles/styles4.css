@@ -11,6 +11,7 @@ h2 {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
+    
 }
 
 .top {
@@ -19,6 +20,7 @@ h2 {
     margin: 0px;
     padding: 0px;
     width: 100%;
+    z-index: -100;
 }
 
 .top p {
@@ -26,28 +28,36 @@ h2 {
     font-size: 26px;     /* Increase font size */
     line-height: 1.5;    /* Control the height */
     margin: 0;
-    text-align: center
+    text-align: center;
 }
 
 .demo {
     text-align: center;
     border: 3px solid black;
-    margin: 20%;
+    border-left: 0px;
+    border-right: 0px;
+    /* margin: 20%; */
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .demo p {
-    font-size: 40px;
-    font-weight: 800;
-    margin: 20px;
+    font-size: 22px;
+    line-height: 1.4;
+    letter-spacing: 2px;
+    margin: 5%;
 }
 
 em {
-    font-style: normal;
+    margin-bottom: 30px;
     font-weight: 300;
     font-style: italic;
-    font-size: 50px;
+    font-size: 25px;
     margin-left: 50px;
-    margin-bottom: 50px;
     display: block;
     text-align: center
 }

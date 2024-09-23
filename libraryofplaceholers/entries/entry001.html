@@ -9,102 +9,36 @@
 </head>
 
 <body>
-    <div class="top">
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
-        <p>Placeholder</p>
+    <div class="top" id="background">
+        <script>
+            const text = "placeholder"
+            const INITIAL_PLACEHOLDRS = 300
+
+            const container = document.getElementById('background');
+            const p = document.createElement('p');
+            container.appendChild(p)
+
+            function loadPlaceholders() {
+                for (let i = 0; i < INITIAL_PLACEHOLDRS; i++) {
+                    p.textContent += text + ' ';
+                }
+            }
+
+            loadPlaceholders();
+
+            window.addEventListener('scroll', () => {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                    loadPlaceholders();
+                }
+            });
+
+        </script>
     </div>
-   
+
     <h2>The Classic</h2>
 
     <div class="demo">
-        <p>Placeholder</p>
+        <p>placeholder</p>
         <em>- Unknown</em>
     </div>
 
