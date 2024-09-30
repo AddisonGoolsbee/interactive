@@ -1,8 +1,8 @@
 let paragraphPlaceholder = ''
 
 document.addEventListener("DOMContentLoaded", function () {
-    const backgroundPlaceholderCount = Math.floor(5000 / placeholder.split(' ').length);
     const paragraphPlaceholderCount = Math.max(1, Math.floor(15 / placeholder.split(' ').length));
+    const backgroundPlaceholderCount = paragraphPlaceholderCount * 40;
     paragraphPlaceholder = Array(paragraphPlaceholderCount).fill(placeholder).join(' ');
 
     const titleContainer = document.getElementById('titleContainer');
