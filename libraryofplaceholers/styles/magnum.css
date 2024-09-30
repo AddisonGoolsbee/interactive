@@ -5,7 +5,7 @@
   font-size: 26px;
   line-height: 34px;
   display: inline;
-  color: #aaa;
+  color: #dedede;
   cursor: default;
   overflow-wrap: break-word;
   hyphens: auto;
@@ -14,7 +14,7 @@
 }
 
 .backgroundText:hover {
-  color: #000;
+  color: #555;
 }
 
 #background {
@@ -39,7 +39,7 @@
 .title {
   /* Lorem Ipsum */
 
-  font-family: 'Arial';
+  font-family: 'Times New Roman';
   font-style: normal;
   font-weight: 700;
   font-size: 54px;
@@ -51,7 +51,7 @@
 }
 
 .source {
-  font-family: 'Arial';
+  font-family: 'Times New Roman';
   font-style: italic;
   font-size: 20px;
   margin-top: 3vh;

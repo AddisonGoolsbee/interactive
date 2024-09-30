@@ -1,4 +1,6 @@
 let paragraphPlaceholder = ''
+console.log("HEEDHFUSHFD")
+console.log(window.title)
 
 document.addEventListener("DOMContentLoaded", function () {
     const paragraphPlaceholderCount = Math.max(1, Math.floor(120 / placeholder.length));
