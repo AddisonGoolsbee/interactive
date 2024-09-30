@@ -5,44 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Classic</title>
-    <link rel="stylesheet" href="../styles/styles1.css">
+    <link rel="stylesheet" href="../styles/magnum.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+    <script src="../javascript/magnum.js"></script>
+    <script>
+        const title = 'Lorem Ipsum';
+        const placeholder = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        const source = 'Cicero';
+    </script>
 </head>
 
 <body>
-    <div class="top" id="background">
-        <script>
-            const text = "placeholder"
-            const INITIAL_PLACEHOLDRS = 300
-
-            const container = document.getElementById('background');
-            const p = document.createElement('p');
-            container.appendChild(p)
-
-            function loadPlaceholders() {
-                for (let i = 0; i < INITIAL_PLACEHOLDRS; i++) {
-                    p.textContent += text + ' ';
-                }
-            }
-
-            loadPlaceholders();
-
-            window.addEventListener('scroll', () => {
-                if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-                    loadPlaceholders();
-                }
-            });
-
-        </script>
-    </div>
-
-    <h2>The Classic</h2>
-
-    <div class="demo">
-        <p>placeholder</p>
-        <em>- Unknown</em>
-    </div>
-
-
+    <div class="top" id="background"></div>
+    <div id="titleContainer"></div>
+    <div id="demo"></div>
 </body>
 
 </html>

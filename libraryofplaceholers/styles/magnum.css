@@ -1,0 +1,109 @@
+.backgroundText {
+  font-family: 'Jacques Francois Shadow';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 34px;
+  display: inline;
+  color: #aaa;
+  cursor: default;
+
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.backgroundText:hover {
+  color: #000;
+}
+
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  width: 100vw;
+  z-index: 0;
+  text-align: justify;
+}
+
+#titleContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 13.5vh auto;
+  width: fit-content;
+}
+
+.title {
+  /* Lorem Ipsum */
+
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 54px;
+  text-align: center;
+  width: fit-content;
+
+
+  color: #000000;
+}
+
+.source {
+  font-family: 'Arial';
+  font-style: italic;
+  font-size: 20px;
+  margin-top: 3vh;
+}
+
+#demo {
+  background-color: white;
+  border: 40px solid #dedede;
+  margin: 0 auto;
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 40px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  
+  transform: translateY(100vh); /* Positioned off the screen at the bottom */
+
+  /* Animation settings */
+  animation: slide-up 1.5s ease-out forwards; /* Animation duration, ease, and ensuring it stays in the final position */
+
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100vh); /* Start below the screen */
+  }
+  to {
+    transform: translateY(0); /* End in its original position */
+  }
+}
+
+.demoColumn {
+  flex: 1;
+  text-align: justify;
+}
+
+.demoColumn p {
+  text-indent: 30px;
+  margin: 0 0 15px 0;
+  margin: 0;
+  line-height: 1.25;
+  font-size: 14px;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.demoColumn .big {
+  text-align: left;
+  line-height: 1.25;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.demoColumn .separator {
+  margin: 0 0 14px 0;
+}
