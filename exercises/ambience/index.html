@@ -28,9 +28,16 @@
             height: 50px;
             border-radius: 50%;
             position: absolute;
-            animation: move 0s ease-in-out alternate;
+            animation: move 0s alternate, immediateChange 4s infinite;
             opacity: 0;
         }
+
+        @keyframes immediateChange {
+            0% { background-color: blue; }
+            50% { background-color: red; }
+            100% { background-color: green; }
+        }
+
     </style>
 </head>
 
@@ -40,11 +47,12 @@
     <script>
         const container = document.querySelector('.container');
         const numRows = 11;
-        const numColumns = 10;
-        const centerRow = Math.floor(numRows / 2); // Find the center row
+        const numColumns = 11;
+        const centerRow = Math.floor(numRows / 2);
         const maxRadius = 50;
+        const maxRowFactor = Math.pow(centerRow, 2);
+        const speed = 8;
 
-        // Function to create a rainbow gradient using HSL
         function getRainbowColor(index, total) {
             const hue = (index / total) * 360; // Calculate the hue based on index
             return `hsl(${hue}, 100%, 50%)`; // Full saturation, 50% lightness for vibrant colors
@@ -53,24 +61,20 @@
         // Generate rows of circles programmatically
         for (let row = 0; row < numRows; row++) {
             const rowHeight = (100 / numRows);  // Calculate the top position of the row
-            const rowFactor = ((maxRadius / (numRows - 1)) * Math.abs(row - centerRow));
+            const rowFactor = Math.pow(row - centerRow, 2) * 25 / maxRowFactor;
             const animationDuration = ((25 + rowFactor) / maxRadius) * 4;
 
             for (let col = 0; col < numColumns; col++) {
+                const animationDelay = (col / numColumns) * speed;
+
                 const circle = document.createElement('div');
                 circle.classList.add('circle');
-
-                // Assign color based on position
                 circle.style.backgroundColor = getRainbowColor(col + numColumns, numColumns);
 
-                // Set row position
                 circle.style.top = `calc(${(row * rowHeight)}vh + 25px)`; // +25px to center it vertically
 
-                // Stagger animations and vary the width for rows
-                circle.style.animationDelay = `${col * 0.3}s`;
-                // circle.style.animationDuration = `${8}s`;
+                circle.style.animationDelay = `${animationDelay}s`;
 
-                // Set dynamic keyframe for each circle row
                 circle.style.animationName = `move-row-${row}-${col}`;
 
                 // Create dynamic keyframe style
@@ -78,23 +82,31 @@
                 const keyframes = `
                 @keyframes move-row-${row}-${col} {
                     0% {
-                        left: calc(${rowFactor}vw);
-                        transform: scale(1);
+                        left: calc(50vw - 25px);
+                        animation-timing-function: ease-out;
+                    }
+                    25% {
+                        left: calc(${100 - rowFactor}vw - 50px);
+                        animation-timing-function: ease-in;
                     }
                     50% {
-                        left: calc(${100 - rowFactor}vw - 50px);
-                        transform: scale(1.2);
+                        left: calc(50vw - 25px);
+                        animation-timing-function: ease-out;
+                    }
+                    75% {
+                        left: calc(${rowFactor}vw);
+                        animation-timing-function: ease-in;
                     }
                     100% {
-                        left: calc(${rowFactor}vw);
-                        transform: scale(1);
+                        left: calc(50vw - 25px);
+                        animation-timing-function: ease-out;
                     }
                 }`;
                 styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
 
                 circle.addEventListener('animationend', () => {
                     circle.style.animationDelay = `${0}s`;
-                    circle.style.animationDuration = `${4}s`;
+                    circle.style.animationDuration = `${speed}s`;
                     circle.style.opacity = 1;
                     container.appendChild(circle); 
                 });
