@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Animation</title>
+    <title>Rainbow Circles</title>
     <style>
-        body, html {
+        body,
+        html {
             height: 100%;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-            background-size: 1400% 1400%;
-            animation: rainbow 20s ease infinite;
+            background-color: #151525;
             overflow: hidden;
         }
 
@@ -26,81 +26,83 @@
         .circle {
             width: 50px;
             height: 50px;
-            background-color: #FF4500;
             border-radius: 50%;
             position: absolute;
-            animation: move 5s infinite ease-in-out alternate;
+            animation: move 0s ease-in-out alternate;
+            opacity: 0;
         }
-
-        .circle:nth-child(2) {
-            background-color: #00CED1;
-            animation-delay: 0.5s;
-        }
-
-        .circle:nth-child(3) {
-            background-color: #FFD700;
-            animation-delay: 1s;
-        }
-
-        .circle:nth-child(4) {
-            background-color: #570187;
-            animation-delay: 1.5s;
-        }
-
-        .circle:nth-child(5) {
-            background-color: #f85460;
-            animation-delay: 2s;
-        }
-
-        .circle:nth-child(6) {
-            background-color: #09283f;
-            animation-delay: 2.5s;
-        }
-
-        .circle:nth-child(7) {
-            background-color: #784fff;
-            animation-delay: 3s;
-        }
-
-        .circle:nth-child(8) {
-            background-color: #fff;
-            animation-delay: 3.5s;
-        }
-
-        .circle:nth-child(9) {
-            background-color: #82f;
-            animation-delay: 4s;
-        }
-
-        @keyframes move {
-            0% {
-                top: 0;
-                left: 0;
-            }
-            100% {
-                top: calc(100vh - 50px);
-                left: calc(100vw - 50px);
-            }
-        }
-
-        @keyframes rainbow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-    </div>
+    <div class="container"></div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const numRows = 11;
+        const numColumns = 10;
+        const centerRow = Math.floor(numRows / 2); // Find the center row
+        const maxRadius = 50;
+
+        // Function to create a rainbow gradient using HSL
+        function getRainbowColor(index, total) {
+            const hue = (index / total) * 360; // Calculate the hue based on index
+            return `hsl(${hue}, 100%, 50%)`; // Full saturation, 50% lightness for vibrant colors
+        }
+
+        // Generate rows of circles programmatically
+        for (let row = 0; row < numRows; row++) {
+            const rowHeight = (100 / numRows);  // Calculate the top position of the row
+            const rowFactor = ((maxRadius / (numRows - 1)) * Math.abs(row - centerRow));
+            const animationDuration = ((25 + rowFactor) / maxRadius) * 4;
+
+            for (let col = 0; col < numColumns; col++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+
+                // Assign color based on position
+                circle.style.backgroundColor = getRainbowColor(col + numColumns, numColumns);
+
+                // Set row position
+                circle.style.top = `calc(${(row * rowHeight)}vh + 25px)`; // +25px to center it vertically
+
+                // Stagger animations and vary the width for rows
+                circle.style.animationDelay = `${col * 0.3}s`;
+                // circle.style.animationDuration = `${8}s`;
+
+                // Set dynamic keyframe for each circle row
+                circle.style.animationName = `move-row-${row}-${col}`;
+
+                // Create dynamic keyframe style
+                const styleSheet = document.styleSheets[0];
+                const keyframes = `
+                @keyframes move-row-${row}-${col} {
+                    0% {
+                        left: calc(${rowFactor}vw);
+                        transform: scale(1);
+                    }
+                    50% {
+                        left: calc(${100 - rowFactor}vw - 50px);
+                        transform: scale(1.2);
+                    }
+                    100% {
+                        left: calc(${rowFactor}vw);
+                        transform: scale(1);
+                    }
+                }`;
+                styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
+                circle.addEventListener('animationend', () => {
+                    circle.style.animationDelay = `${0}s`;
+                    circle.style.animationDuration = `${4}s`;
+                    circle.style.opacity = 1;
+                    container.appendChild(circle); 
+                });
+
+                container.appendChild(circle);
+            }
+        }
+    </script>
 </body>
+
 </html>
