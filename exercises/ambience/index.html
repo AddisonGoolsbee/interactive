@@ -28,14 +28,8 @@
             height: 50px;
             border-radius: 50%;
             position: absolute;
-            animation: move 0s alternate, immediateChange 4s infinite;
+            border: 1px solid white;
             opacity: 0;
-        }
-
-        @keyframes immediateChange {
-            0% { background-color: blue; }
-            50% { background-color: red; }
-            100% { background-color: green; }
         }
 
     </style>
@@ -52,17 +46,17 @@
         const maxRadius = 50;
         const maxRowFactor = Math.pow(centerRow, 2);
         const speed = 8;
+        const sphereRadius = 35
 
         function getRainbowColor(index, total) {
-            const hue = (index / total) * 360; // Calculate the hue based on index
-            return `hsl(${hue}, 100%, 50%)`; // Full saturation, 50% lightness for vibrant colors
+            const hue = (index / total) * 360;
+            return `hsl(${hue}, 100%, 50%)`;
         }
 
-        // Generate rows of circles programmatically
         for (let row = 0; row < numRows; row++) {
-            const rowHeight = (100 / numRows);  // Calculate the top position of the row
-            const rowFactor = Math.pow(row - centerRow, 2) * 25 / maxRowFactor;
-            const animationDuration = ((25 + rowFactor) / maxRadius) * 4;
+            const rowHeight = (100 / numRows);
+            const rowFactor = Math.pow(row - centerRow, 2) * sphereRadius / maxRowFactor;
+            const animationDuration = ((sphereRadius + rowFactor) / maxRadius) * 4;
 
             for (let col = 0; col < numColumns; col++) {
                 const animationDelay = (col / numColumns) * speed;
@@ -71,13 +65,12 @@
                 circle.classList.add('circle');
                 circle.style.backgroundColor = getRainbowColor(col + numColumns, numColumns);
 
-                circle.style.top = `calc(${(row * rowHeight)}vh + 25px)`; // +25px to center it vertically
+                circle.style.top = `calc(${(row * rowHeight)}vh + 25px)`;
 
                 circle.style.animationDelay = `${animationDelay}s`;
-
+                circle.style.animationIterationCount = 'infinite';
                 circle.style.animationName = `move-row-${row}-${col}`;
 
-                // Create dynamic keyframe style
                 const styleSheet = document.styleSheets[0];
                 const keyframes = `
                 @keyframes move-row-${row}-${col} {
@@ -104,16 +97,47 @@
                 }`;
                 styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
 
+                circle.alternate = false;
+                let first = true;
+                let alternate = true
+
                 circle.addEventListener('animationend', () => {
-                    circle.style.animationDelay = `${0}s`;
-                    circle.style.animationDuration = `${speed}s`;
-                    circle.style.opacity = 1;
-                    container.appendChild(circle); 
+                    if (row == 0 && col == 0) {
+                        console.log('a')
+                    }
+                    if (first) {
+                        circle.style.animationDelay = `${0}s`;
+                        circle.style.animationDuration = `${speed}s`;
+                        circle.style.opacity = 1;
+                        container.appendChild(circle);
+                        first = false;
+                    }
+                });
+
+                circle.addEventListener('animationstart', () => {
+                    if (row == 0 && col == 0) {
+                        console.log('b')
+                    }
+                    if (!first) {
+                        setTimeout(() => {
+                        if (row == 0 && col == 0) {
+                            console.log('c', alternate)
+                        }
+                        if (alternate) {
+                            container.insertBefore(circle, container.firstChild);
+                            circle.getAnimations()[0].currentTime = speed * 500;
+                        } else {
+                            container.appendChild(circle);
+                        }
+                        }, speed * 500);
+                    }
+                    alternate = !alternate
                 });
 
                 container.appendChild(circle);
             }
         }
+        
     </script>
 </body>
 
