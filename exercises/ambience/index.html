@@ -28,10 +28,8 @@
             height: 50px;
             border-radius: 50%;
             position: absolute;
-            border: 1px solid white;
             opacity: 0;
         }
-
     </style>
 </head>
 
@@ -40,13 +38,13 @@
 
     <script>
         const container = document.querySelector('.container');
-        const numRows = 11;
+        const numRows = 211;
         const numColumns = 11;
         const centerRow = Math.floor(numRows / 2);
-        const maxRadius = 50;
+        const ballRadius = 100;
         const maxRowFactor = Math.pow(centerRow, 2);
-        const speed = 8;
-        const sphereRadius = 35
+        const speed = 6;
+        const sphereRadius = 40
 
         function getRainbowColor(index, total) {
             const hue = (index / total) * 360;
@@ -54,18 +52,20 @@
         }
 
         for (let row = 0; row < numRows; row++) {
-            const rowHeight = (100 / numRows);
+            const rowHeight = (100 / (numRows - 1));
             const rowFactor = Math.pow(row - centerRow, 2) * sphereRadius / maxRowFactor;
-            const animationDuration = ((sphereRadius + rowFactor) / maxRadius) * 4;
+            const animationDuration = ((sphereRadius + rowFactor) / ballRadius) * 4;
 
             for (let col = 0; col < numColumns; col++) {
                 const animationDelay = (col / numColumns) * speed;
 
                 const circle = document.createElement('div');
+                circle.style.width = `${ballRadius}px`;
+                circle.style.height = `${ballRadius}px`;
                 circle.classList.add('circle');
                 circle.style.backgroundColor = getRainbowColor(col + numColumns, numColumns);
 
-                circle.style.top = `calc(${(row * rowHeight)}vh + 25px)`;
+                circle.style.top = `calc(${(row * rowHeight)}vh - ${ballRadius * ((row + (row > 0 ? 1 : 0)) / numRows)}px)`;
 
                 circle.style.animationDelay = `${animationDelay}s`;
                 circle.style.animationIterationCount = 'infinite';
@@ -75,15 +75,15 @@
                 const keyframes = `
                 @keyframes move-row-${row}-${col} {
                     0% {
-                        left: calc(50vw - 25px);
+                        left: calc(50vw - ${ballRadius / 2}px);
                         animation-timing-function: ease-out;
                     }
                     25% {
-                        left: calc(${100 - rowFactor}vw - 50px);
+                        left: calc(${100 - rowFactor}vw - ${ballRadius}px);
                         animation-timing-function: ease-in;
                     }
                     50% {
-                        left: calc(50vw - 25px);
+                        left: calc(50vw - ${ballRadius / 2}px);
                         animation-timing-function: ease-out;
                     }
                     75% {
@@ -91,7 +91,7 @@
                         animation-timing-function: ease-in;
                     }
                     100% {
-                        left: calc(50vw - 25px);
+                        left: calc(50vw - ${ballRadius / 2}px);
                         animation-timing-function: ease-out;
                     }
                 }`;
@@ -102,9 +102,6 @@
                 let alternate = true
 
                 circle.addEventListener('animationend', () => {
-                    if (row == 0 && col == 0) {
-                        console.log('a')
-                    }
                     if (first) {
                         circle.style.animationDelay = `${0}s`;
                         circle.style.animationDuration = `${speed}s`;
@@ -115,21 +112,15 @@
                 });
 
                 circle.addEventListener('animationstart', () => {
-                    if (row == 0 && col == 0) {
-                        console.log('b')
-                    }
                     if (!first) {
                         setTimeout(() => {
-                        if (row == 0 && col == 0) {
-                            console.log('c', alternate)
-                        }
-                        if (alternate) {
-                            container.insertBefore(circle, container.firstChild);
-                            circle.getAnimations()[0].currentTime = speed * 500;
-                        } else {
-                            container.appendChild(circle);
-                        }
-                        }, speed * 500);
+                            if (alternate) {
+                                container.insertBefore(circle, container.firstChild);
+                                circle.getAnimations()[0].currentTime = speed * 420;                                
+                            } else {
+                                container.appendChild(circle);
+                            }
+                        }, speed * (alternate ? 580 : 420));
                     }
                     alternate = !alternate
                 });
@@ -137,7 +128,7 @@
                 container.appendChild(circle);
             }
         }
-        
+
     </script>
 </body>
 
