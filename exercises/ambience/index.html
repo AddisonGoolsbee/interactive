@@ -38,13 +38,13 @@
 
     <script>
         const container = document.querySelector('.container');
-        const numRows = 211;
+        const numRows = 15;
         const numColumns = 11;
         const centerRow = Math.floor(numRows / 2);
-        const ballRadius = 100;
+        const ballRadius = 60;
         const maxRowFactor = Math.pow(centerRow, 2);
-        const speed = 6;
-        const sphereRadius = 40
+        const speed = 10;
+        const sphereRadius = 25
 
         function getRainbowColor(index, total) {
             const hue = (index / total) * 360;
