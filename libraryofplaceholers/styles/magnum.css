@@ -9,7 +9,6 @@
   cursor: default;
   overflow-wrap: break-word;
   hyphens: auto;
-
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -18,13 +17,13 @@
 }
 
 #background {
-  position: absolute;
-  top: 0;
+  position: fixed;
   left: 0;
+  top: 0;
   overflow: auto;
-  width: 100vw;
   z-index: 0;
   text-align: justify;
+  padding: 6vh 15px;
 }
 
 #titleContainer {
@@ -33,28 +32,58 @@
   flex-direction: column;
   align-items: center;
   margin: 13.5vh auto;
+  margin-top: 17vh;
   width: fit-content;
+  pointer-events: none;
+  /* padding: 0 15vh; */
 }
 
 .title {
-  /* Lorem Ipsum */
-
   font-family: 'Times New Roman';
   font-style: normal;
   font-weight: 700;
   font-size: 54px;
   text-align: center;
   width: fit-content;
-
-
   color: #000000;
+  pointer-events: auto;
 }
+
+.placeholderDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3vh;
+}
+
+.placeholder {
+  font-family: 'Times New Roman';
+  font-size: 20px;
+  width: fit-content;
+  margin-top: 3vh;
+  text-align: center;
+  padding: 10px;
+  pointer-events: auto;
+  margin-left: 15vh;
+  margin-right: 15vh;
+}
+
+.placeholder:focus {
+  outline: none;
+}
+
+/* @keyframes blink {
+  50% {
+    opacity: 0;
+  }
+} */
 
 .source {
   font-family: 'Times New Roman';
   font-style: italic;
   font-size: 20px;
   margin-top: 3vh;
+  pointer-events: auto;
 }
 
 #demo {
@@ -67,12 +96,11 @@
   gap: 30px;
   padding: 40px;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  
+
   transform: translateY(100vh); /* Positioned off the screen at the bottom */
 
   /* Animation settings */
   animation: slide-up 1.5s ease-out forwards; /* Animation duration, ease, and ensuring it stays in the final position */
-
 }
 
 @keyframes slide-up {
@@ -89,6 +117,10 @@
   text-align: justify;
   overflow-wrap: break-word;
   hyphens: auto;
+}
+
+.demoColumn:focus {
+  outline: none;
 }
 
 .demoColumn p {
@@ -108,4 +140,31 @@
 
 .demoColumn .separator {
   margin: 0 0 14px 0;
+}
+
+nav {
+  background-color: white;
+  border-bottom: 2px solid #dedede;
+  padding: 1vh 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+}
+
+nav a {
+  font-family: 'Times New Roman';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+  color: #000000;
+}
+
+body {
+  margin: 0;
 }
