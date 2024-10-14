@@ -17,26 +17,61 @@
         }
 
         div {
-            display:inline-block;
+            display: inline-block;
+        }
+
+        @keyframes rotate-circle {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes move-left-right {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(100px);
+            }
+        }
+
+        @keyframes move-up-down {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(100px);
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="credit">This website is based on the design of the <a href="https://enzomari.com/">Enzo Mari archive</a> by <a href="https://jon-l.com/">Jon Lucas</a>.</div>
-    
+
     <script>
         // define your "batch of images" in an array
-       var images = [
-                "<img src='images/horse_1.jpg'>",
-                "<img src='images/horse_2.jpg'>",
-                "<img src='images/horse_3.jpg'>",
-                "<img src='images/horse_4.jpg'>",
-                "<img src='images/horse_5.jpg'>",
-                "<img src='images/horse_6.jpg'>",
-                "<img src='images/horse_7.jpg'>",
-                "<img src='images/horse_8.jpg'>",
-            ]
+        global_z = 1;
+        var images = [
+            "<img src='images/1.gif'>",
+            "<img src='images/2.png'>",
+            "<img src='images/3.png'>",
+            "<img src='images/4.png'>",
+            "<img src='images/5.png'>",
+            "<img src='images/6.png'>",
+            "<img src='images/7.png'>",
+            "<img src='images/8.webp'>",
+            "<img src='images/9.webp'>",
+        ]
 
         // this function randomly picks an image from the batch
         function random_image() {
@@ -54,11 +89,39 @@
 
             // these two lines pick a random width for the image.
             // 300 is the MAX width, and 100 is the MIN width.
-            var random_width = Math.floor(Math.random() * (300 - 100 + 1) + 100);
+            var random_width = Math.floor(Math.random() * (500 - 100 + 1) + 100);
             var random_width_pixels = random_width + "px";
 
             // assign that random width to the new image
             new_image.style.width = random_width_pixels;
+            new_image.style.position = "fixed";
+            if (global_z == 1) {
+                new_image.style.top = 50 + "vh";
+                new_image.style.left = "50vw";
+            } else {
+                new_image.style.top = Math.floor(Math.random() * 100) - new_image.clientHeight + "vh";
+                new_image.style.left = Math.floor(Math.random() * 100) - new_image.clientWidth + "vw";
+            }
+            
+            new_image.style.transform = `rotate(${Math.floor(Math.random() * 360)}deg)`;
+            new_image.style.zIndex = global_z;
+            global_z++;
+
+            if (Math.random() < 0.1) {
+                const animationType = Math.floor(Math.random() * 3);
+                console.log(animationType);
+                switch (animationType) {
+                    case 0:
+                        new_image.style.animation = 'rotate-circle 5s infinite linear';
+                        break;
+                    case 1:
+                        new_image.style.animation = 'move-left-right 5s infinite ease-in-out';
+                        break;
+                    case 2:
+                        new_image.style.animation = 'move-up-down 5s infinite ease-in-out';
+                        break;
+                }
+            }
 
             // add the new image to the document's body (so it's visible!)
             document.body.prepend(new_image);
