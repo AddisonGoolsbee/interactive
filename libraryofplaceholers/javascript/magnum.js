@@ -33,9 +33,15 @@
 //     fetchPlaceholders();
 // });
 
+import data from './data.js'
 
 let paragraphPlaceholder = ''
 let timeoutId = null;
+
+let title = data[entry - 1].title
+let placeholder = data[entry - 1].placeholder
+let source = data[entry - 1].source
+console.log(title)
 
 document.addEventListener("DOMContentLoaded", function () {
     generateNav();
