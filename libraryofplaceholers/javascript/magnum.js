@@ -41,7 +41,6 @@ let timeoutId = null;
 let title = data[entry - 1].title
 let placeholder = data[entry - 1].placeholder
 let source = data[entry - 1].source
-console.log(title)
 
 document.addEventListener("DOMContentLoaded", function () {
     generateNav();
@@ -129,19 +128,16 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 const generateNav = () => {
-    const maxEntry = 15;
-
-    const nav = document.createElement('nav');
-    const currentFile = window.location.pathname.split('/').pop();
-    const entryNumber = parseInt(currentFile.match(/\d+/)[0]);
-    let prevEntry = entryNumber - 1;
-    let nextEntry = entryNumber + 1;
-    if (prevEntry < 1) {
-        prevEntry = maxEntry;
+    let prevEntry = entry - 1;
+    let nextEntry = entry + 1;
+    if (entry <= 1) {
+        prevEntry = data.length;
     }
-    if (nextEntry > maxEntry) {
+    if (entry >= data.length) {
         nextEntry = 1;
     }
+
+    const nav = document.createElement('nav');
 
     const prevLink = document.createElement('a');
     prevLink.href = `entry${String(prevEntry).padStart(3, '0')}.html`

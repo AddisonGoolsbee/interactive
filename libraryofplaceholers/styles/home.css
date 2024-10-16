@@ -1,0 +1,32 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pageContainer {
+  margin: 0 auto;
+}
+
+.placeholderThumbnail {
+  height: 200px;
+  width: 200px;
+  border: 1px solid black;
+  position: absolute;
+  background-color: white;
+}
+
+.placeholderThumbnail:hover {
+  transform: translateY(-100px);
+  animation: all 0.5s ease-in;
+}
+
+/* @keyframes hoverThumbnail {
+  0% {
+      transform: translateY(0);
+  }
+
+  100% {
+      
+  }
+} */
