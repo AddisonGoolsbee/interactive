@@ -12,6 +12,11 @@
 - main site contains a nice layout that is filled with placeholders from the library
 - entries have examples of how the placeholder would look
 
+## Design Improvements
+
+- entry: background more transparent
+- entry: blinking cursor MUCH more obvious
+
 ## Idea placeholders
 
 - substitute pokemon
