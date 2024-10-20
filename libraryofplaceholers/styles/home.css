@@ -6,27 +6,168 @@
 
 .pageContainer {
   margin: 0 auto;
+  position: relative;
+  width: 200px;
+  background-color: lightgray;
+  height: 300px;
 }
 
 .placeholderThumbnail {
   height: 200px;
-  width: 200px;
-  border: 1px solid black;
-  position: absolute;
+  width: 150px;
+  border: 3px solid #dedede;
   background-color: white;
+  position: absolute;
+  cursor: pointer;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  padding: 5px;
+  transition: transform 0.3s ease;
+
 }
 
 .placeholderThumbnail:hover {
-  transform: translateY(-100px);
-  animation: all 0.5s ease-in;
+  transform: translateY(-50px);
 }
 
-/* @keyframes hoverThumbnail {
-  0% {
-      transform: translateY(0);
-  }
+.placeholderTitle {
+  color: gray;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 20px;
+}
 
-  100% {
-      
-  }
-} */
+.placeholderContent {
+  padding: 20px;
+  font-size: 14px;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  overflow: hidden;
+
+}
+
+.what {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background-color: #fff8f0;
+  color: #5a3d2b;
+  font-weight: 600;
+  border-radius: 15px;
+  border: 2px solid #b89d84;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.what:hover {
+  background-color: #f0e4d7;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.popup-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.popup {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.popup.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.popup h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #5a3d2b;
+}
+
+.popup button {
+  background-color: #b89d84;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background-color: #9c7b6c;
+}
+
+
+
+.libraryTitle {
+  font-family: 'Georgia', serif;
+  font-size: 36px;
+  color: #4A3F35;
+  text-align: center;
+  margin: 15vh auto;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  border-bottom: 2px solid #8B4513;
+  padding-bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+}
+
+
+#drawer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 100px;
+  background-color: #D3D3D3; /* Filing cabinet color */
+  border: 2px solid #8B4513; /* Drawer border */
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  transition: height 0.5s ease;
+}
+
+#drawer.open {
+  height: 400px; /* Adjust height to simulate drawer opening */
+}
+
+#drawer .placeholderThumbnail {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#drawer.open .placeholderThumbnail {
+  opacity: 1;
+  transition-delay: 0.3s;
+}

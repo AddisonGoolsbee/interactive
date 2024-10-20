@@ -1,53 +1,59 @@
 import data from './data.js'
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log(data[0])
-    /**
-     * <ul>
-        <li>
-            <a href="entries/entry001.html">Entry 1</a>
-        </li>
+    const container = document.getElementById('container');
 
-        document.querySelectorAll('.book').forEach(book => {
-    book.addEventListener('click', () => {
-        const randomIndex = Math.floor(Math.random() * 15) + 1;
-        window.location.href = `./entries/index${String(randomIndex).padStart(3, '0')}`;
+    const drawer = document.createElement('div');
+    drawer.classList.add('drawer');
+    container.appendChild(drawer);
+    drawer.addEventListener('click', () => {
+        drawer.classList.toggle('open');
     });
-});
-     */
+
+    const aboutButton = document.getElementById('what');
+    const popupOverlay = document.getElementById('popupOverlay');
+    const popup = document.querySelector('.popup');
+    const closePopup = document.getElementById('closePopup');
+
+    aboutButton.addEventListener('click', () => {
+        // popupOverlay.style.display = 'flex';
+        popupOverlay.classList.add('show');
+        popup.classList.add('show');
+
+    });
+
+    closePopup.addEventListener('click', () => {
+        // popupOverlay.style.display = 'none';
+        popupOverlay.classList.remove('show');
+        popup.classList.remove('show');
+    });
+
     const pageContainer = document.createElement('div');
     pageContainer.classList.add('pageContainer');
-    document.body.appendChild(pageContainer);
+    container.appendChild(pageContainer);
     for (let i = 0; i < data.length; i++) {
         const title = data[i].title;
-        const url = `./entries/entry${String(i+1).padStart(3, '0')}.html`
+        const placeholderPreview = data[i].placeholder.slice(0, 100);
+
+        const url = `./entries/entry${String(i + 1).padStart(3, '0')}.html`
         const page = document.createElement('div');
         page.classList.add('placeholderThumbnail');
-        page.textContent = title;
-        page.onclick = () => {window.location.href = url}
-        page.style.top = `${200 + 10*i}px`
-        page.style.left = `${200 + 5*i}px`
+
+        const titleElement = document.createElement('div');
+        titleElement.textContent = title;
+        titleElement.classList.add('placeholderTitle');
+
+        const contentElement = document.createElement('div');
+        contentElement.textContent = placeholderPreview;
+        contentElement.classList.add('placeholderContent');
+
+        page.appendChild(titleElement);
+        page.appendChild(contentElement);
+
+        page.onclick = () => { window.location.href = url }
+        page.style.top = `${10 * i}px`
+        page.style.left = `${5 * i}px`
+
         pageContainer.appendChild(page);
     }
-    // generateNav();
-
-    // const paragraphPlaceholderCount = Math.max(1, Math.floor(120 / placeholder.length));
-    // const backgroundPlaceholderCount = paragraphPlaceholderCount * 40;
-    // paragraphPlaceholder = Array(paragraphPlaceholderCount).fill(placeholder).join(' ');
-
-    // const titleContainer = document.getElementById('titleContainer');
-    // const titleElement = document.createElement('div');
-    // titleElement.classList.add('title');
-    // titleElement.textContent = title;
-    // titleContainer.appendChild(titleElement);
-    // const contentElement = document.createElement('div');
-    // contentElement.classList.add('placeholder');
-    // contentElement.textContent = placeholder;
-    // contentElement.contentEditable = true;
-    // titleContainer.appendChild(contentElement);
-    // const sourceElement = document.createElement('div');
-    // sourceElement.classList.add('source');
-    // sourceElement.textContent = 'Source: ' + source;
-    // titleContainer.appendChild(sourceElement);
-
 });
