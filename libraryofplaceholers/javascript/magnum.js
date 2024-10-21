@@ -84,13 +84,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    const range = document.createRange();
-    const selection = window.getSelection();
-    range.selectNodeContents(contentElement);
-    range.collapse(false); // Collapse the range to the end
-    selection.removeAllRanges();
-    selection.addRange(range);
-    contentElement.focus();
 
     const container = document.getElementById('background');
 
