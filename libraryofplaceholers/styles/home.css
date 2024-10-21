@@ -6,35 +6,38 @@
 
 .pageContainer {
   margin: 0 auto;
-  position: relative;
+  position: absolute;
   width: 200px;
-  background-color: lightgray;
   height: 300px;
+  /* opacity: 0; */
+  /* transition: opacity 0.5s ease, transform 0.5s ease; */
+  z-index: 1;
 }
 
 .placeholderThumbnail {
   height: 200px;
   width: 150px;
-  border: 3px solid #dedede;
+  border: 2px solid #dedede;
   background-color: white;
   position: absolute;
   cursor: pointer;
   overflow-wrap: break-word;
   overflow: hidden;
   padding: 5px;
-  transition: transform 0.3s ease;
-
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.3s ease;
 }
 
 .placeholderThumbnail:hover {
-  transform: translateY(-50px);
+  transform: translateY(-130px) !important;
+  transition: transform 0.3s ease;
 }
 
 .placeholderTitle {
   color: gray;
   font-size: 24px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .placeholderContent {
@@ -50,13 +53,10 @@
   position: absolute;
   top: 30px;
   right: 30px;
-  background-color: #fff8f0;
-  color: #5a3d2b;
+  background-color: #F5DEB3;
   font-weight: 600;
   border-radius: 15px;
-  border: 2px solid #b89d84;
   padding: 10px 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -111,8 +111,8 @@
 }
 
 .popup button {
-  background-color: #b89d84;
-  color: white;
+  background-color: #F5DEB3;
+  color: black;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -120,54 +120,73 @@
 }
 
 .popup button:hover {
-  background-color: #9c7b6c;
+  background-color: #c6b391;
 }
 
 
 
 .libraryTitle {
   font-family: 'Georgia', serif;
-  font-size: 36px;
-  color: #4A3F35;
+  font-size: 50px;
   text-align: center;
-  margin: 15vh auto;
+  margin: 20vh auto;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   display: inline-block;
-  border-bottom: 2px solid #8B4513;
+  border-bottom: 2px solid black;
   padding-bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   position: relative;
 }
 
-
-#drawer {
+#container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  background-color: white;
+  z-index: 0;
+}
+
+.folder {
   width: 300px;
-  height: 100px;
-  background-color: #D3D3D3; /* Filing cabinet color */
-  border: 2px solid #8B4513; /* Drawer border */
-  border-radius: 5px;
+  height: 170px;
+  background-color: #F5DEB3; /* Light beige color for front folder */
   position: relative;
+  margin: 0 auto;
   cursor: pointer;
-  transition: height 0.5s ease;
+  transition: transform 0.5s ease;
+  z-index: 2;
+  top: 30px;
+  transform-origin: bottom;
+  transform: skewX(-3deg);
 }
 
-#drawer.open {
-  height: 400px; /* Adjust height to simulate drawer opening */
+.folder-back {
+  width: 300px;
+  height: 200px;
+  background-color: #D2B48C; /* Darker beige for the back */
+  position: absolute;
+  z-index: 1;
 }
 
-#drawer .placeholderThumbnail {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+/* Animation for opening folder */
+.open-folder .folder {
+  transform: scaleY(0.8) skewX(-6deg);
+} 
 
-#drawer.open .placeholderThumbnail {
+.open-folder .placeholderThumbnail {
   opacity: 1;
-  transition-delay: 0.3s;
+  transform: translateY(-80px); /* Move to original position */
+}
+
+.blinder {
+  z-index: 20;
+  background-color: white;
+  position: absolute;
+  top: 200px;
+  height: 250px;
+  width: 400px;
 }

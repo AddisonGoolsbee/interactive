@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const pageContainer = document.createElement('div');
     pageContainer.classList.add('pageContainer');
     container.appendChild(pageContainer);
-    for (let i = 0; i < data.length; i++) {
+    for (let i = data.length - 1; i >= 0; i--) {
         const title = data[i].title;
         const placeholderPreview = data[i].placeholder.slice(0, 100);
 
@@ -51,9 +51,14 @@ document.addEventListener("DOMContentLoaded", function () {
         page.appendChild(contentElement);
 
         page.onclick = () => { window.location.href = url }
-        page.style.top = `${10 * i}px`
-        page.style.left = `${5 * i}px`
+        page.style.top = `${7 * (data.length - 1 - i)}px`
+        page.style.left = `${3 * (data.length - 1 - i)}px`
 
         pageContainer.appendChild(page);
     }
+
+    const folderContainer = document.getElementById('container')
+    folderContainer.addEventListener('click', () => {
+        folderContainer.classList.toggle('open-folder'); 
+    });
 });

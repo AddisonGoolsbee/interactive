@@ -59,10 +59,28 @@ document.addEventListener("DOMContentLoaded", function () {
     contentElement.textContent = placeholder;
     contentElement.contentEditable = true;
     titleContainer.appendChild(contentElement);
+    const customCursor = document.createElement('span');
+    customCursor.classList.add('placeholder-cursor');
+    contentElement.appendChild(customCursor);
     const sourceElement = document.createElement('div');
     sourceElement.classList.add('source');
     sourceElement.textContent = 'Source: ' + source;
     titleContainer.appendChild(sourceElement);
+
+    const hideCustomCursor = () => {
+        customCursor.style.display = 'none'; // Hide custom cursor when focused
+    };
+    
+    const showCustomCursor = () => {
+        customCursor.style.display = 'inline-block'; // Show custom cursor again when unfocused
+    };
+    
+    // Add focus and blur event listeners
+    contentElement.addEventListener('focus', hideCustomCursor);
+    contentElement.addEventListener('blur', showCustomCursor);
+    
+    // Initially show the custom cursor
+    showCustomCursor();
 
 
 

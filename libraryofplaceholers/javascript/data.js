@@ -35,29 +35,44 @@ const data = [
         source: 'The Unicode Consortium',
     },
     {
-        title: 'Lorem Ipsum',
-        placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        title: 'Moby Dick',
+        placeholder: 'Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off—then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.',
+        source: 'Herman Melville',
+    },
+    {
+        title: 'Long Ipsum',
+        placeholder: 'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur adipisci[ng] velit, sed quia non numquam [do] eius modi tempora inci[di]dunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum[d] exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? [D]Quis autem vel eum i[r]ure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga.',
         source: 'Cicero',
     },
     {
-        title: 'Lorem Ipsum',
-        placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        source: 'Cicero',
+        title: 'Keyboard Rows',
+        placeholder: 'qwertyuiopasdfghjklzxcvbnm',
+        source: 'Christopher Latham Sholes',
     },
     {
-        title: 'Lorem Ipsum',
-        placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        source: 'Cicero',
+        title: 'Pi',
+        placeholder: '3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679',
+        source: 'Archimedes of Syracuse',
     },
     {
-        title: 'Lorem Ipsum',
-        placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        source: 'Cicero',
+        title: 'Dots',
+        placeholder: '...........................................................',
+        source: 'Unknown',
     },
     {
-        title: 'Lorem Ipsum',
-        placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        source: 'Cicero',
+        title: 'Your Name Here',
+        placeholder: "your name here",
+        source: 'Unknown',
+    },
+    {
+        title: 'Placeholder Wikipedia',
+        placeholder: "Placeholder name, a term or terms referring to something or somebody whose name is not known or, in that particular context, is not significant or relevant. Filler text, text generated to fill space or provide unremarkable and/or standardised text. Placeholder Ad, a blank space in website as ad space.",
+        source: 'Wikipedia.com',
+    },
+    {
+        title: 'Chargen',
+        placeholder: "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefgh",
+        source: 'RFC 864',
     }
 ]
 
