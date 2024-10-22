@@ -16,14 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const closePopup = document.getElementById('closePopup');
 
     aboutButton.addEventListener('click', () => {
-        // popupOverlay.style.display = 'flex';
         popupOverlay.classList.add('show');
         popup.classList.add('show');
-
     });
 
     closePopup.addEventListener('click', () => {
-        // popupOverlay.style.display = 'none';
         popupOverlay.classList.remove('show');
         popup.classList.remove('show');
     });

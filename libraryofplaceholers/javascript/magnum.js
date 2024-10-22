@@ -1,37 +1,3 @@
-// // how to import firebase from ./firebase.js, which exports const app  
-
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-// import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"; 
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
-
-// // Your web app's Firebase configuration
-// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCSt_HLBQVO2cPuZ6bpV37-WYBbLgrnRt0",
-//     authDomain: "library-of-placeholders.firebaseapp.com",
-//     projectId: "library-of-placeholders",
-//     storageBucket: "library-of-placeholders.appspot.com",
-//     messagingSenderId: "295046155553",
-//     appId: "1:295046155553:web:dcffb491a4f73577564260",
-//     measurementId: "G-N3FJJYGCZK"
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const db = getFirestore(app);
-
-// async function fetchPlaceholders() {
-//     const placeholdersCollection = collection(db, "placeholders");
-//     const placeholderSnapshot = await getDocs(placeholdersCollection);
-//     placeholderSnapshot.forEach(doc => {
-//         console.log(doc.id, "=>", doc.data());
-//     });
-// }
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     fetchPlaceholders();
-// });
 
 import data from './data.js'
 
@@ -82,9 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initially show the custom cursor
     showCustomCursor();
 
-
-
-
     const container = document.getElementById('background');
 
     function loadPlaceholders() {
@@ -97,13 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     loadPlaceholders();
-
-    // const backgroundElement = document.getElementById('background');
-    // window.addEventListener('scroll', () => {
-    //     if (window.innerHeight + window.scrollY >= backgroundElement.scrollHeight) {
-    //         loadPlaceholders();
-    //     }
-    // });
 
     const demo = document.getElementById('demo');
     const col1 = document.createElement('div');
