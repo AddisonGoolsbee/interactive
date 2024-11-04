@@ -1,0 +1,31 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #eef;
+}
+
+#goose-container {
+  height: 50vh; /* Adjust width as needed */
+  width: auto;
+  position: absolute;
+  top: -50vh; /* Start well above the screen */
+  animation: slideHalfwayDown 1.5s ease-out forwards;
+}
+
+#goose {
+  height: 100%; /* Make the goose image fill the container */
+}
+
+@keyframes slideHalfwayDown {
+  from {
+    top: -50vh; /* Start off-screen */
+  }
+  to {
+    top: -10vh; /* Stop halfway down */
+  }
+}
