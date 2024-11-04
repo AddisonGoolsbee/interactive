@@ -2,11 +2,10 @@ let gooseSize = 1;
 
 document.body.onkeydown = function (keypress_event) {
   const key = keypress_event.key;
-  document.getElementById("key_display").innerHTML = `You pressed: ${key}`;
 
   // Check if 'q' was pressed to increase the goose size
   if (key === 'q') {
-    gooseSize += 0.1; // Increase goose size by 10%
+    gooseSize += 0.2; // Increase goose size by 10%
 
     const message = document.createElement("div");
     message.className = "special-message";
@@ -28,8 +27,8 @@ document.body.onkeydown = function (keypress_event) {
   newGoose.className = "goose";
   newGoose.style.width = `${200 * gooseSize}px`; // Adjust width based on gooseSize
   newGoose.style.position = "absolute";
-  newGoose.style.left = `calc(${Math.random() * 80}vw - ${gooseWidth / 2}px)`;
-  newGoose.style.bottom = `calc(${Math.random() * 50}vh - ${gooseWidth / 2}px)`;
+  newGoose.style.left = `calc(${Math.random() * 100}vw - ${gooseWidth / 2}px)`;
+  newGoose.style.bottom = `calc(${Math.random() * 100}vh - ${gooseWidth / 2}px)`;
   newGoose.style.transition = "transform 0.5s ease-in-out";
   newGoose.style.transform = "scale(1)";
   document.body.appendChild(newGoose);
