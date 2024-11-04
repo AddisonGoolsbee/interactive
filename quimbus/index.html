@@ -7,12 +7,38 @@
     <title>QUIMBUS</title>
     <link rel="icon" type="image/png" href="../images/icon.png" />
     <script type="module" , src="./javascript/home.js"></script>
-    <link rel="stylesheet" href="./styles/home.css">    <link rel="icon" type="image/svg+xml" href="assets/blackLogo.svg" sizes="32x32">
+    <link rel="stylesheet" href="./styles/home.css">
+    <link rel="icon" type="image/svg+xml" href="assets/blackLogo.svg" sizes="32x32">
     <link rel="icon" type="image/svg+xml" href="../assets/blackLogo.svg" sizes="32x32">
 </head>
 
 <body>
+    <img id="background-goose" src="../assets/quimbus.png" alt="Background Goose">
+
     <div id="goose-container">
         <img id="goose" src="../assets/quimbus.png" alt="Goose" />
-      </div>
+    </div>
+    <div id="speech-box">Hello!</div>
+
+    <div id="bottom-container">
+        <div id="decision-container">
+            <select id="decision-dropdown">
+                <option value="" disabled selected>Choose a category</option>
+                <option value="dining_hall">Eat at dining hall?</option>
+                <option value="menu_item">Which menu item?</option>
+                <option value="sleep">Sleep?</option>
+                <option value="work">Do work?</option>
+            </select>
+        </div>
+
+        <div id="action-container">
+            <textarea type="text" placeholder="Option 1" ></textarea>
+            <text>vs</text>
+            <textarea type="text" placeholder="Option 2" ></textarea>
+            <button id="action-button" onclick="beginDecision()">Begin</button>
+        </div>
+    </div>
+
+
+
 </body>

@@ -2,11 +2,13 @@ body, html {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background-color: #eef;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #eef;
+  position: relative;
 }
 
 #goose-container {
@@ -21,11 +23,123 @@ body, html {
   height: 100%; /* Make the goose image fill the container */
 }
 
+#background-goose {
+  position: fixed;
+  top: 50%;
+  left: -10%;
+  width: auto; /* Huge size to show only a portion */
+  height: 400vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.4; /* 20% transparency */
+  transform: translate(-50%, -50%) rotate(90deg); /* Center and rotate */
+  pointer-events: none;
+  z-index: 0;
+}
+
+#speech-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 35vh;
+  transform: translateX(-50%) scale(0);
+  width: 200px;
+  padding: 10px;
+  color: black;
+  background-color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  z-index: 10;
+  height: 10vh;
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transition-delay: 1.5s;
+}
+
+#speech-box.show {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+#decision-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40vh;
+}
+
+#decision-container p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+#decision-dropdown {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+#bottom-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 1;
+  z-index: 5;
+  
+}
+
+#action-container {
+  background-color: #ffcc33;
+  padding: 20px;
+  margin-top: 20px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 1;
+}
+
+#action-container textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5;
+  resize: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+#action-container text {
+  font-size: 1.5rem;
+}
+
+#action-container textarea:focus {
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#action-button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
 @keyframes slideHalfwayDown {
   from {
     top: -50vh; /* Start off-screen */
   }
   to {
-    top: -10vh; /* Stop halfway down */
+    top: -15vh; /* Stop halfway down */
   }
 }
