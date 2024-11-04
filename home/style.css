@@ -1,0 +1,165 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: background-color-animation 10s infinite alternate;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #012;
+  color: #bcd;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1000px;
+  margin-top: 25vh;
+}
+
+.section-titles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 80vw;
+  max-width: 1000px;
+}
+
+.section-titles h2 {
+  position: relative;
+  font-size: 2rem;
+  padding-bottom: 12px; /* Space for the border effect */
+}
+
+.section-titles h2:after {
+  content: "";
+  position: absolute;
+  bottom: -4px; /* Adjusts the distance of the border from text */
+  left: -15%;
+  width: 130%;
+  height: 3px; /* Thickness of the border */
+  background: linear-gradient(90deg, #4a90e2, #bcd, #4a90e2); /* Gradient for the border */
+  background-size: 300%; /* Makes gradient twice the width for cycling */
+  animation: gradient-cycle 4s linear infinite; /* Animation cycle */
+  filter: blur(0.5px);
+}
+
+.section-titles h2:last-child:after {
+  animation-delay: 1s;
+}
+
+@keyframes gradient-cycle {
+  0% { background-position: 0% 0; }
+  100% { background-position: 100% 0; }
+}
+
+
+.section-content {
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  max-width: 1000px;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: #4a90e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  perspective: 800px; /* Allows for 3D perspective effect */
+  transition: transform 0.1s ease-out;
+  border-radius: 8px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.projects {
+  gap: 40px;
+}
+
+.projects a {
+  color: #bcd;
+  text-decoration: none;
+  font-size: 2rem;
+  text-shadow: 0 0 20px #abc;
+  transition: opacity 0.3s ease;
+  filter: blur(5px);
+}
+
+.projects a:hover {
+  filter: blur(0); /* Remove blur effect */
+  transition: transform 0.3s ease;
+  transition: text-shadow 0.3s ease;
+  transition: filter 0.3s ease-in;
+}
+
+.projects a:hover:before {
+  opacity: 1; /* Show glow effect on hover */
+}
+
+.exercises a {
+  color: #bcd;
+  text-decoration: none;
+  font-size: 2rem;
+  text-shadow: 0 0 20px #abc;
+  transition: opacity 0.3s ease;
+  filter: blur(5px);
+}
+
+.exercises a {
+  color: #bcd;
+  text-decoration: none;
+  font-size: 1.5rem;
+  text-shadow: 0 0 20px #abc;
+  transition: opacity 0.3s ease;
+  filter: blur(5px);
+}
+
+.exercises a:hover {
+  filter: blur(0); /* Remove blur effect */
+  transition: transform 0.3s ease;
+  transition: text-shadow 0.3s ease;
+  transition: filter 0.3s ease-in;
+}
+
+.exercises a:hover:before {
+  opacity: 1; /* Show glow effect on hover */
+}
+
+
+
+.exercises ol,
+.projects ol {
+  list-style-type: none;
+  padding: 0;
+}
+
+.fixed-icon {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.top-icon {
+  top: 10px;
+}
+.bottom-icon {
+  bottom: 10px;
+}
