@@ -7,7 +7,12 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background: url('./bitcoin2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            color: white;
         }
+
 
         #square-container {
             position: relative;
@@ -20,7 +25,7 @@
             position: absolute;
             width: 50px;
             height: 50px;
-            background-color: #007BFF;
+            background-color: white;
             top: 75px;
             animation: rotate 2s linear infinite;
         }
@@ -75,7 +80,8 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: #007BFF;
+            background: white;
+            border: 2px solid black;
             cursor: pointer;
         }
 
@@ -144,7 +150,7 @@
             const square4Pos = 75 - 0.8 * offsets[0] + 0.3 * offsets[1] - 1.5 * offsets[2];
             squares[3].style.top = square4Pos + 'px';
             positions.push(square4Pos);
-    
+
             checkAlignment(positions);
         }
 
