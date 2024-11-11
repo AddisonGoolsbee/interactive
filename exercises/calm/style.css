@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent; /* Disables the highlight color */
+    outline: none; /* Removes any outline */
+  }
+  
+  body {
+      overflow: hidden; /* Disables scrolling */
+  }
+  
+  .wrapper {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      357deg,
+      #0a2a34,
+      #144a63,
+      #6185a3,
+      #2a87aa,
+      #4c9fbf,
+      #95c2d4,
+      #aee8e8
+    );
+    background-size: 1400% 1400%;
+  
+    -webkit-animation: AnimationName 38s ease infinite;
+    -moz-animation: AnimationName 38s ease infinite;
+    animation: AnimationName 38s ease infinite;
+  }
+  
+  @-webkit-keyframes AnimationName {
+    0% {
+      background-position: 48% 0%;
+    }
+    50% {
+      background-position: 53% 100%;
+    }
+    100% {
+      background-position: 48% 0%;
+    }
+  }
+  @-moz-keyframes AnimationName {
+    0% {
+      background-position: 48% 0%;
+    }
+    50% {
+      background-position: 53% 100%;
+    }
+    100% {
+      background-position: 48% 0%;
+    }
+  }
+  @keyframes AnimationName {
+    0% {
+      background-position: 48% 0%;
+    }
+    50% {
+      background-position: 53% 100%;
+    }
+    100% {
+      background-position: 48% 0%;
+    }
+  }
+  .wrapper div {
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50px;
+    position: absolute;
+    transform: translateX(-50%);
+    animation: moveUp 4s linear forwards;
+  }
+  div .dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 20%;
+    right: 20%;
+  }
+  
+  @keyframes moveUp {
+    50% {
+      transform: rotate(90deg);
+    }
+  
+    100% {
+      transform: rotate(180deg);
+      top: -60%;
+    }
+  }
+  
+  @keyframes pop {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0.5;
+    }
+  }
+  
+  .pop-animation {
+    animation: pop 0.3s forwards !important; /* Override existing animation */
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  #words {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100dvh;
+    justify-content: center;
+  }
+  
+  #words h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    color: #ffffff;
+    filter: blur(1px);
+  }
+  
