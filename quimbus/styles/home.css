@@ -2,8 +2,8 @@ body, html {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  height: 100vh;
-  width: 100vw;
+  height: 100svh;
+  width: 100svw;
   background-color: #eef;
   display: flex;
   align-items: center;
@@ -13,10 +13,10 @@ body, html {
 }
 
 #goose-container {
-  height: 50vh; /* Adjust width as needed */
+  height: 50svh; /* Adjust width as needed */
   width: auto;
   position: absolute;
-  top: -50vh; /* Start well above the screen */
+  top: -50svh; /* Start well above the screen */
   animation: slideHalfwayDown 1.5s ease-out forwards;
 }
 
@@ -163,17 +163,17 @@ body, html {
 
 @keyframes slideHalfwayDown {
   from {
-    top: -50vh; /* Start off-screen */
+    top: -50svh; /* Start off-screen */
   }
   to {
-    top: -15vh; /* Stop halfway down */
+    top: -15svh; /* Stop halfway down */
   }
 }
 
 @media (max-width: 768px) {
   @keyframes slideHalfwayDown {
     from {
-      top: -50vh; /* Start off-screen */
+      top: -50svh; /* Start off-screen */
     }
     to {
       top: -28svh; /* Stop halfway down */
@@ -183,11 +183,11 @@ body, html {
 
 @keyframes moveToCenter {
   from {
-    top: -15vh;
+    top: -15svh;
     transform: scale(1);
   }
   to {
-    top: 70vh;
+    top: 70svh;
     transform: scale(1.5);
   }
 }
@@ -257,7 +257,7 @@ body, html {
 
 @keyframes fall {
   to {
-      transform: translateY(100vh);
+      transform: translateY(100svh);
   }
 }
 
