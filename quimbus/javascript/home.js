@@ -132,7 +132,7 @@ const quimbusQuips = [
   "This one's a feather-ruffler!",
   "Quack-tastic choice!",
   "HONK HONK, I agree.",
-  "Imagine this: a goose in a hat.\n\n Huh? Oh, sorry, I got distracted",
+  "Imagine this: a goose in a hat.\nHuh? Oh, sorry, I got distracted",
   "Honk if you're hungry. Oh wait, that's me.",
   "Are we sure this isn't about breadcrumbs?",
   "Quimcredible timing.",
@@ -154,9 +154,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function setGooseSpeech(text) {
     const speechBox = document.getElementById("speech-box");
-    speechBox.classList.remove("show");
-    speechBox.style.transform = "translateX(-50%) scale(0.8)";
-    speechBox.style.opacity = "0";
+    speechBox.style.transform = "translateX(-50%) scale(0.1)";
+    // speechBox.style.opacity = "0";
+    speechBox.style.transition =
+      "transition: transform 0.15s ease, opacity 0.25s ease";
 
     // Wait for the fade-out animation to complete
     setTimeout(() => {
@@ -164,9 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
       speechBox.innerText = text;
       speechBox.style.transform = "translateX(-50%) scale(1)";
       speechBox.style.opacity = "1";
-
-      // Show the box again
-      speechBox.classList.add("show");
     }, 250);
   }
 
@@ -177,18 +175,30 @@ document.addEventListener("DOMContentLoaded", function () {
     let b = "";
     if (decision == "food_choice") {
       questionSet = [...foodChoices];
+      setGooseSpeech("What foods are you deciding between?");
     }
 
     const actionContainer = document.getElementById("action-container");
+
+    actionContainer.style.transform = "scale(0.8)";
+    actionContainer.style.opacity = "0";
+    actionContainer.style.transition =
+      "transform 0.3s ease forwards, opacity 0.3s ease forwards";
+
+    setTimeout(() => {
+      actionContainer.style.transform = "scale(1)";
+      actionContainer.style.opacity = "1";
+    }, 0); // Small delay for smoother animation
+
     actionContainer.innerHTML = `
-            <div id="input-question" style="text-align: center; transition: opacity 0.3s ease;">
-                <p>What are you trying to decide between eating?</p>
-                <input id="input-a" type="text" maxlength="15" placeholder="Option A" style="width: 100px; text-align: center; margin-right: 10px;" />
-                <input id="input-b" type="text" maxlength="15" placeholder="Option B" style="width: 100px; text-align: center;" />
-                <br/><br/>
-                <button id="submit-options" class="decision-button">Submit</button>
-            </div>
-        `;
+    <div id="input-question" class="input-question">
+        <div class="input-container">
+            <input id="input-a" type="text" maxlength="30" placeholder="Option A" class="styled-input" />
+            <input id="input-b" type="text" maxlength="30" placeholder="Option B" class="styled-input" />
+        </div>
+        <button id="submit-options" class="choice-button">Submit</button>
+    </div>
+`;
 
     // Add an event listener to the submit button
     document.getElementById("submit-options").addEventListener("click", () => {
@@ -214,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Randomize and select 10 questions
       const selectedQuestions = questionSet
         .sort(() => Math.random() - 0.5)
-        .slice(0, 3);
+        .slice(0, 8);
 
       // Step 3: Ask the first question
       askQuestions(selectedQuestions);
@@ -232,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const actionContainer = document.getElementById("action-container");
         actionContainer.innerHTML = ""; // Clear the previous interaction
 
-        if (currentIndex != 0 && Math.random() < 0.25) {
+        if (currentIndex != 0 && Math.random() < 0.2) {
           const randomQuip =
             quimbusQuips[Math.floor(Math.random() * quimbusQuips.length)];
           setGooseSpeech(randomQuip);
@@ -266,36 +276,62 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       function createSlider(question) {
         const sliderWrapper = document.createElement("div");
-        sliderWrapper.style.transition = "opacity 0.3s ease";
+        sliderWrapper.className = "slider-wrapper";
+        sliderWrapper.style.transform = "scale(0.8)";
+        sliderWrapper.style.opacity = "0";
+        sliderWrapper.style.transition =
+          "transform 0.3s ease, opacity 0.3s ease";
+
+        setTimeout(() => {
+          sliderWrapper.style.transform = "scale(1)";
+          sliderWrapper.style.opacity = "1";
+        }, 50); // Small delay for smoother animation
+
         sliderWrapper.innerHTML = `
-              <input type="range" min="1" max="100" value="50" id="slider">
-              <div style="display: flex; justify-content: space-between;">
-                  <span>${question.sliderLabels[0]}</span>
-                  <span>${question.sliderLabels[1]}</span>
-              </div>
-          `;
+            <div class="slider-labels">
+                <span class="slider-label">${question.sliderLabels[0]}</span>
+                <span class="slider-label">${question.sliderLabels[1]}</span>
+            </div>
+            <input type="range" min="1" max="100" value="50" id="slider" class="styled-slider">
+        `;
 
         const actionContainer = document.getElementById("action-container");
         actionContainer.appendChild(sliderWrapper);
 
         const slider = document.getElementById("slider");
         slider.addEventListener("change", () => {
-          const value = slider.value + "% on a scale from " + question.sliderLabels[0] + " (0%) to " + question.sliderLabels[1] + " (100%)";
-          const weight = interpolateWeight(question.weights, slider.value / 100);
+          const value =
+            slider.value +
+            "% on a scale from " +
+            question.sliderLabels[0] +
+            " (0%) to " +
+            question.sliderLabels[1] +
+            " (100%)";
+          const weight = interpolateWeight(
+            question.weights,
+            slider.value / 100
+          );
           answers.push({ question: question.question, answer: value, weight });
           fadeOutAndNext(sliderWrapper);
         });
       }
 
       function createChoices(question) {
-        const choicesWrapper = document.createElement("div");
-        choicesWrapper.style.display = "flex";
-        choicesWrapper.style.justifyContent = "space-around";
-        choicesWrapper.style.transition = "opacity 0.3s ease";
+        const choiceContainer = document.createElement("div");
+        choiceContainer.id = "choice-container";
+        choiceContainer.style.transform = "scale(0.8)";
+        choiceContainer.style.opacity = "0";
+        choiceContainer.style.transition =
+          "transform 0.3s ease, opacity 0.3s ease";
+
+        setTimeout(() => {
+          choiceContainer.style.transform = "scale(1)";
+          choiceContainer.style.opacity = "1";
+        }, 50); // Small delay for smoother animation
 
         question.choices.forEach((choice, index) => {
           const button = document.createElement("button");
-          button.className = "decision-button";
+          button.className = "choice-button";
           button.innerText = choice;
           button.onclick = () => {
             answers.push({
@@ -303,13 +339,13 @@ document.addEventListener("DOMContentLoaded", function () {
               answer: choice,
               weight: question.weights[index],
             });
-            fadeOutAndNext(choicesWrapper);
+            fadeOutAndNext(choiceContainer);
           };
-          choicesWrapper.appendChild(button);
+          choiceContainer.appendChild(button);
         });
 
         const actionContainer = document.getElementById("action-container");
-        actionContainer.appendChild(choicesWrapper);
+        actionContainer.appendChild(choiceContainer);
       }
 
       function fadeOutAndNext(element) {
@@ -361,11 +397,20 @@ document.addEventListener("DOMContentLoaded", function () {
         gooseContainer.style.animation = "moveToCenter 2s ease forwards";
       }, 10);
 
+      // Adjust speechBox for mobile
+      if (window.innerWidth <= 768) {
+        // Mobile breakpoint
+        speechBox.style.transition = "top 1s ease";
+        speechBox.style.top = "30svh";
+      }
+
       // Update the speech text
       setTimeout(() => {
         setGooseSpeech(
-          `Press my left foot for ${a}, or my right foot for ${b}. Now it's time for you to make a choice!`
+          `Press my left foot for ${a}, or my right foot for ${b}.`
         );
+
+        actionContainer.style.pointerEvents = "none";
 
         // Add clickable feet
         const leftFoot = document.createElement("div");
@@ -396,15 +441,16 @@ document.addEventListener("DOMContentLoaded", function () {
           setGooseSpeech(
             correct
               ? `You chose ${choice}! Great choice, just as I suggested!`
-              : `You chose ${choice}? Hmm... interesting. I did say ${decision}, but sure, go ahead!`
+              : `You chose ${choice}? Hmm... interesting. I did say ${decision}, but sure, go ahead.`
           );
 
           launchConfetti(correct);
+          actionContainer.style.pointerEvents = "auto";
 
           // Reset everything after a short delay
           setTimeout(() => {
             resetGoose();
-          }, 2000);
+          }, 5000);
         }
 
         function handleLeftFootClick() {
@@ -437,7 +483,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Reset goose and speech box to their original positions
     gooseContainer.style.animation = "slideHalfwayDown 1.5s ease-out forwards";
     speechBox.style.transition = "none";
-    speechBox.style.top = "35vh";
+    speechBox.style.top = "40svh";
     speechBox.style.left = "50%";
     speechBox.style.transform = "translateX(-50%) scale(1)";
 
@@ -463,17 +509,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Create dropdown container dynamically
     const decisionContainer = document.createElement("div");
-    decisionContainer.id = "decision-container";
+    decisionContainer.id = "choice-container";
     decisionContainer.style.transform = "scale(0.8)";
     decisionContainer.style.opacity = "0";
     decisionContainer.style.transition =
       "transform 0.3s ease, opacity 0.3s ease";
 
-    // Populate dropdown
     decisionContainer.innerHTML = `
-   <button class="decision-button" onclick="handleDecision('food_choice')">Food Choice</button>
-   <button class="decision-button" onclick="handleDecision('responsibility_vs_fun')">Responsibility vs Fun</button>
-`;
+      <button class="choice-button" data-decision="food_choice">Food Choice</button>
+      <button class="choice-button" data-decision="responsibility_vs_fun">Responsibility vs Fun</button>
+  `;
 
     // Append to the action container
     actionContainer.appendChild(decisionContainer);
@@ -483,6 +528,25 @@ document.addEventListener("DOMContentLoaded", function () {
       decisionContainer.style.transform = "scale(1)";
       decisionContainer.style.opacity = "1";
     }, 50); // Small delay for smoother animation
+
+    // Add event listener to buttons
+    decisionContainer.addEventListener("click", (event) => {
+      if (event.target.classList.contains("choice-button")) {
+        const decision = event.target.getAttribute("data-decision");
+
+        // Fade out the decision container
+        decisionContainer.style.transform = "scale(0.8)";
+        decisionContainer.style.opacity = "0";
+
+        // Wait for the fade-out animation to complete
+        setTimeout(() => {
+          actionContainer.removeChild(decisionContainer)
+          actionContainer.style.opacity = "0"; // Remove the container
+          handleDecision(decision); // Proceed to the next step
+        }, 300); // Match the CSS transition duration
+      }
+    });
   }
+
   setTimeout(showDecisionDropdown, 1000);
 });
