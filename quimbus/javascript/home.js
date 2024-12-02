@@ -6,16 +6,28 @@ const foodChoices = [
     weights: [-0.8, 0.8], // Slider: B-weighted to A-weighted
   },
   {
-    question: "Which one looks more appetizing?",
+    question: "How tasty is {b}?",
+    type: "slider",
+    sliderLabels: ["BLEH!", "DEEEELICIOUS"],
+    weights: [0.8, -0.8], // Slider: B-weighted to A-weighted
+  },
+  {
+    question: "Which one seems more appetizing?",
     type: "choice",
     choices: ["{a}", "roughly equal", "{b}"],
     weights: [0.6, 0, -0.6], // Choice: A-weighted, neutral, B-weighted
   },
   {
-    question: "How filling is {b}?",
+    question: "How filling is {a}?",
     type: "slider",
     sliderLabels: ["Still hungry", "Completely stuffed"],
     weights: [-0.7, 0.7], // Slider: B-weighted to A-weighted
+  },
+  {
+    question: "How filling is {b}?",
+    type: "slider",
+    sliderLabels: ["Still hungry", "Completely stuffed"],
+    weights: [0.7, -0.7], // Slider: B-weighted to A-weighted
   },
   {
     question: "Which one smells better?",
@@ -27,7 +39,7 @@ const foodChoices = [
     question: "If you had to eat it every day for a week, which one wins?",
     type: "choice",
     choices: ["{a}", "depends on the mood", "{b}"],
-    weights: [0.7, 0, -0.7], // Choice: A-weighted, neutral, B-weighted
+    weights: [1, 0, -1], // Choice: A-weighted, neutral, B-weighted
   },
   {
     question: "How fun is it to eat {a}?",
@@ -36,10 +48,10 @@ const foodChoices = [
     weights: [-0.5, 0.5], // Slider: B-weighted to A-weighted
   },
   {
-    question: "Which one would impress someone else at the table?",
-    type: "choice",
-    choices: ["{a}", "both are equal", "{b}"],
-    weights: [0.4, 0, -0.4], // Choice: A-weighted, neutral, B-weighted
+    question: "How fun is it to eat {b}?",
+    type: "slider",
+    sliderLabels: ["No fun", "So satisfying!"],
+    weights: [0.5, -0.5], // Slider: B-weighted to A-weighted
   },
   {
     question: "How much effort does {b} take to eat?",
@@ -54,10 +66,16 @@ const foodChoices = [
     weights: [0.6, 0, -0.6], // Choice: A-weighted, neutral, B-weighted
   },
   {
-    question: "How big is {a}? (Think: one serving.)",
+    question: "How big is {a}?",
     type: "slider",
     sliderLabels: ["Tiny snack", "Endless feast"],
     weights: [-0.4, 0.4], // Slider: B-weighted to A-weighted
+  },
+  {
+    question: "How big is {b}?",
+    type: "slider",
+    sliderLabels: ["Tiny snack", "Endless feast"],
+    weights: [0.4, -0.4], // Slider: B-weighted to A-weighted
   },
   {
     question: "Which one has a better texture?",
@@ -66,58 +84,127 @@ const foodChoices = [
     weights: [0.5, 0, -0.5], // Choice: A-weighted, neutral, B-weighted
   },
   {
-    question: "Would you be able to share {b} with someone?",
-    type: "slider",
-    sliderLabels: ["Selfish choice", "Sharing is caring"],
-    weights: [0.2, -0.2], // Slider: A-weighted to B-weighted
-  },
-  {
-    question: "Which one is easier to eat on the go?",
+    question: "Which one is more practical?",
     type: "choice",
-    choices: ["{a}", "neither is practical", "{b}"],
-    weights: [0.3, 0, -0.3], // Choice: A-weighted, neutral, B-weighted
+    choices: ["{a}", "both are similar", "{b}"],
+    weights: [1, 0, -1], // Choice: A-weighted, neutral, B-weighted
   },
   {
     question: "How messy is {a}?",
     type: "slider",
     sliderLabels: ["Not messy", "Total disaster"],
-    weights: [-0.6, 0.6], // Slider: B-weighted to A-weighted
+    weights: [0.3, -0.3], // Slider: B-weighted to A-weighted
   },
   {
-    question: "Which one would taste better as leftovers?",
+    question: "Which one will you regret more if you don't choose it?",
     type: "choice",
-    choices: ["{a}", "hard to decide", "{b}"],
-    weights: [0.4, 0, -0.4], // Choice: A-weighted, neutral, B-weighted
-  },
-  {
-    question: "How much will you regret eating {b}?",
-    type: "slider",
-    sliderLabels: ["No regrets", "Instant regret"],
+    sliderLabels: ["{a}", "{b}"],
     weights: [0.7, -0.7], // Slider: A-weighted to B-weighted
   },
   {
-    question: "Which one is better suited for a casual meal?",
-    type: "choice",
-    choices: ["{a}", "depends on the setting", "{b}"],
-    weights: [0.5, 0, -0.5], // Choice: A-weighted, neutral, B-weighted
-  },
-  {
-    question: "How crunchy is {a}?",
+    question: "How much would I enjoy {a}?",
     type: "slider",
-    sliderLabels: ["Soft and squishy", "CRUNCH!"],
-    weights: [-0.3, 0.3], // Slider: B-weighted to A-weighted
+    sliderLabels: ["Grrr!", "HONK!"],
+    weights: [-0.1, 0.1], // Slider: B-weighted to A-weighted
   },
   {
-    question: "Which one feels like a better splurge?",
+    question: "If you were judging yourself one week from now for this decision, which would you choose?",
     type: "choice",
-    choices: ["{a}", "both feel indulgent", "{b}"],
-    weights: [0.8, 0, -0.8], // Choice: A-weighted, neutral, B-weighted
+    sliderLabels: ["{a}", "{b}"],
+    weights: [0.7, -0.7], // Slider: A-weighted to B-weighted
   },
   {
-    question: "How likely is {b} to leave you wishing you’d picked it?",
+    question: "How much effort would {a} take?",
     type: "slider",
-    sliderLabels: ["No envy", "Why didn’t I choose this?!"],
+    sliderLabels: ["None", "Way too much"],
+    weights: [0.7, -0.7], // Slider: A-weighted to B-weighted
+  },
+  {
+    question: "How much effort would {b} take?",
+    type: "slider",
+    sliderLabels: ["None", "Way too much"],
+    weights: [-0.7, 0.7], // Slider: A-weighted to B-weighted
+  },
+];
+
+const responsibilityVsFun = [
+  {
+    question: "How rewarding will {a} feel afterward?",
+    type: "slider",
+    sliderLabels: ["Meh", "Very rewarding"],
+    weights: [-0.8, 0.8], // Slider: B-weighted to A-weighted
+  },
+  {
+    question: "How enjoyable is {b}?",
+    type: "slider",
+    sliderLabels: ["Meh", "Super fun!"],
+    weights: [-0.8, 0.8], // Slider: B-weighted to A-weighted
+  },
+  {
+    question: "How relaxing is {b}?",
+    type: "slider",
+    sliderLabels: ["Not relaxing", "Extremely relaxing"],
+    weights: [-0.7, 0.7], // Slider: B-weighted to A-weighted
+  },
+  {
+    question: "If you had to justify {b} to Addison, would he accept your argument?",
+    type: "choice",
+    choices: ["Yes, absolutely", "Not sure", "No way"],
+    weights: [-0.5, 0, 0.8], // Choice: B-weighted to A-weighted
+  },
+  {
+    question: "Would I, Quimbus, support this decision?",
+    type: "choice",
+    choices: ["Yes, you'd honk for {a}", "You're neutral", "No, you'd honk for {b}"],
+    weights: [0.6, 0, -0.6], // Choice: A-weighted to B-weighted
+  },
+  {
+    question: "When's the last time you had a break?",
+    type: "slider",
+    sliderLabels: ["Just now", "Ages ago"],
     weights: [0.5, -0.5], // Slider: A-weighted to B-weighted
+  },
+  {
+    question: "How urgent is {a}?",
+    type: "slider",
+    sliderLabels: ["Not urgent", "Extremely urgent"],
+    weights: [-0.7, 1.5], // Slider: B-weighted to A-weighted
+  },
+  {
+    question: "How difficult/intense is {a}?",
+    type: "slider",
+    sliderLabels: ["Not at all", "Very intense"],
+    weights: [0.6, -1], // Slider: B-weighted to A-weighted
+  },
+  {
+    question: "How much time does {b} take? Be realistic here.",
+    type: "slider",
+    sliderLabels: ["Very little", "Way too much"],
+    weights: [0.6, -0.6], // Slider: A-weighted to B-weighted
+  },
+  {
+    question: "You are Marie from the future, reliving today. Which one will you choose?",
+    type: "choice",
+    choices: ["{a}, obviously", "Hard to say", "{b}, for sure"],
+    weights: [0.5, 0, -0.5], // Choice: A-weighted to B-weighted
+  },
+  {
+    question: "How likely is it that after you do {b} you won't start working?",
+    type: "slider",
+    sliderLabels: ["Definitely will work", "Won't start at all"],
+    weights: [0.5, -1], // Slider: A-weighted to B-weighted
+  },
+  {
+    question: "Who is the greatest goose?",
+    type: "choice",
+    choices: ["Quimbus", "Quombus", "Marie Bong"],
+    weights: [0, 0, 0, 0], // Neutral weights for fun
+  },
+  {
+    question: "Would you consider {a} to be out of your comfort zone?",
+    type: "choice",
+    choices: ["Yes", "No"],
+    weights: [0.5, -0.5], // Choice: A-weighted to B-weighted
   },
 ];
 
@@ -176,6 +263,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (decision == "food_choice") {
       questionSet = [...foodChoices];
       setGooseSpeech("What foods are you deciding between?");
+    } else if (decision == "responsibility_vs_fun") {
+      questionSet = [...responsibilityVsFun];
+      setGooseSpeech("What are you weighing? Put the responsible one on the left please.");
     }
 
     const actionContainer = document.getElementById("action-container");
@@ -193,8 +283,8 @@ document.addEventListener("DOMContentLoaded", function () {
     actionContainer.innerHTML = `
     <div id="input-question" class="input-question">
         <div class="input-container">
-            <input id="input-a" type="text" maxlength="30" placeholder="Option A" class="styled-input" />
-            <input id="input-b" type="text" maxlength="30" placeholder="Option B" class="styled-input" />
+            <input id="input-a" type="text" maxlength="30" placeholder="${decision == "food_choice" ? "Option A" : "Responsible"}" class="styled-input" />
+            <input id="input-b" type="text" maxlength="30" placeholder="${decision == "food_choice" ? "Option B" : "Fun"}"  class="styled-input" />
         </div>
         <button id="submit-options" class="choice-button">Submit</button>
     </div>
@@ -202,8 +292,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add an event listener to the submit button
     document.getElementById("submit-options").addEventListener("click", () => {
-      a = document.getElementById("input-a").value.trim();
-      b = document.getElementById("input-b").value.trim();
+      a = document.getElementById("input-a").value.trim().toLowerCase();
+      b = document.getElementById("input-b").value.trim().toLowerCase();
 
       if (!a || !b) {
         setGooseSpeech("Please fill out both options!");
