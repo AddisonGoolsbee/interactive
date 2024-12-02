@@ -232,6 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function askQuestions(questions) {
       let currentIndex = 0;
+      let quipShown = false;
 
       function askNext() {
         if (currentIndex >= questions.length) {
@@ -242,10 +243,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const actionContainer = document.getElementById("action-container");
         actionContainer.innerHTML = ""; // Clear the previous interaction
 
-        if (currentIndex != 0 && Math.random() < 0.2) {
+        if (!quipShown && currentIndex != 0 && Math.random() < 0.2) {
           const randomQuip =
             quimbusQuips[Math.floor(Math.random() * quimbusQuips.length)];
           setGooseSpeech(randomQuip);
+          quipShown = true;
 
           // Add "click anywhere to continue" message
           const continueMessage = document.createElement("p");
@@ -271,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (currentQuestion.type === "choice") {
           createChoices(currentQuestion);
         }
-
+        quipShown = false;
         currentIndex++;
       }
       function createSlider(question) {
