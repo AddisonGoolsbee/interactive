@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>QUIMBUS</title>
     <link rel="icon" type="image/png" href="../images/icon.png" />
-    <script type="module" , src="./javascript/home.js"></script>
+    <script type="module" src="./javascript/home.js"></script>
     <link rel="stylesheet" href="./styles/home.css">
     <link rel="icon" type="image/svg+xml" href="assets/blackLogo.svg" sizes="32x32">
     <link rel="icon" type="image/svg+xml" href="../assets/blackLogo.svg" sizes="32x32">
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 </head>
 
 <body>
-    <img id="background-goose" src="../assets/quimbus.png" alt="Background Goose">
+    <img id="background-goose" src="./assets/quimbus.png" alt="Background Goose">
 
     <div id="goose-container">
-        <img id="goose" src="../assets/quimbus.png" alt="Goose" />
+        <img id="goose" src="./assets/quimbus.png" alt="Goose" />
     </div>
-    <div id="speech-box">Hello!</div>
+    <div id="speech-box"></div>
 
-    <div id="bottom-container">
+    <div id="action-container"></div>
+
+    <!-- <div id="bottom-container">
         <div id="decision-container">
             <select id="decision-dropdown">
                 <option value="" disabled selected>Choose a category</option>
@@ -37,7 +40,7 @@
             <textarea type="text" placeholder="Option 2" ></textarea>
             <button id="action-button" onclick="beginDecision()">Begin</button>
         </div>
-    </div>
+    </div> -->
 
 
 
