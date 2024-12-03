@@ -20,7 +20,9 @@ body {
   margin-top: 25vh;
 }
 
-.section-titles {
+
+
+.container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -28,13 +30,34 @@ body {
   max-width: 1000px;
 }
 
-.section-titles h2 {
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 8dvh;
+  }
+
+  .content {
+    margin-top: 10dvh;
+    margin-bottom: 10dvh;
+  }
+}
+
+.thing {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  max-width: 1000px;
+  align-items: center;
+
+}
+
+.section-title {
   position: relative;
   font-size: 2rem;
   padding-bottom: 12px; /* Space for the border effect */
 }
 
-.section-titles h2:after {
+.section-title:after {
   content: "";
   position: absolute;
   bottom: -4px; /* Adjusts the distance of the border from text */
@@ -47,7 +70,7 @@ body {
   filter: blur(0.5px);
 }
 
-.section-titles h2:last-child:after {
+.section-title:last-child:after {
   animation-delay: 1s;
 }
 
@@ -81,16 +104,14 @@ body {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+
 .section {
   display: flex;
   flex-direction: column;
   flex: 1;
+  text-align: center;
   align-items: center;
   padding: 20px;
-  gap: 20px;
-}
-
-.projects {
   gap: 40px;
 }
 
@@ -99,15 +120,14 @@ body {
   text-decoration: none;
   font-size: 2rem;
   text-shadow: 0 0 20px #abc;
-  transition: opacity 0.3s ease;
-  filter: blur(5px);
+  transition: opacity 0.3s ease; 
 }
 
 .projects a:hover {
-  filter: blur(0); /* Remove blur effect */
+  filter: blur(5px); /* Remove blur effect */
   transition: transform 0.3s ease;
   transition: text-shadow 0.3s ease;
-  transition: filter 0.3s ease-in;
+  transition: filter 0.6s ease-in;
 }
 
 .projects a:hover:before {
@@ -120,29 +140,18 @@ body {
   font-size: 2rem;
   text-shadow: 0 0 20px #abc;
   transition: opacity 0.3s ease;
-  filter: blur(5px);
-}
-
-.exercises a {
-  color: #bcd;
-  text-decoration: none;
-  font-size: 1.5rem;
-  text-shadow: 0 0 20px #abc;
-  transition: opacity 0.3s ease;
-  filter: blur(5px);
 }
 
 .exercises a:hover {
-  filter: blur(0); /* Remove blur effect */
+  filter: blur(5px);
   transition: transform 0.3s ease;
   transition: text-shadow 0.3s ease;
-  transition: filter 0.3s ease-in;
+  transition: filter 0.6s ease-in;
 }
 
 .exercises a:hover:before {
   opacity: 1; /* Show glow effect on hover */
 }
-
 
 
 .exercises ol,
