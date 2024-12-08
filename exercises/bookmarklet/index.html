@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookmarklet Generator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css" />
+</head>
+
+<body>
+  <main id="app">
+    <div class="description">
+      <p>
+        This is a simple bookmarklet generator. Paste your JavaScript code
+        below and click the "Run" button to generate a bookmarklet.
+      </p>
+    </div>
+    <form id="form">
+      <textarea name="js" id="code" style="display: none"></textarea>
+      <div id="code-editor"></div>
+      <button type="submit">Run</button>
+    </form>
+    <pre id="output"></pre>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
