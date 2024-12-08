@@ -113,7 +113,7 @@ body, html {
   z-index: 1;
   width: 50svw;
   min-width: 300px;
-  height: 20svh;
+  height: 30svh;
   min-height: 200px;
   position: absolute;
   display: flex;
@@ -199,12 +199,11 @@ body, html {
   justify-content: space-between;
   align-items: center;
   width: 60%;
-  height: 60%;
+  height: 100%;
   background-color: #FFC05B;
   border-radius: 20px;
   padding: 15px 0;
   gap: 15px;
-
 }
 
 .choice-button {
@@ -233,6 +232,7 @@ body, html {
 @media (max-width: 768px) {
   #choice-container {
     width: 80%;
+    height: 60%;
   }
 
   .choice-button {
